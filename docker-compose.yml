@@ -6,7 +6,7 @@ services:
     container_name: testmind-api
     ports:
       - "8000:8000"
-    volumes:
-      - .:/app
+    # volumes:
+    #   - .:/app
     env_file:
       - .env
