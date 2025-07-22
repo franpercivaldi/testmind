@@ -22,7 +22,7 @@ class JiraClient:
             return False
 
     # Método para obtener issues de Jira
-    def get_issues(self, project_key: str, issue_type: str = None, status: str = None, max_results: int = 10) -> List[JiraIssue]:
+    def get_issues(self, project_key: str, issue_type: str = None, status: str = 'QA TESTING', max_results: int = 10) -> List[JiraIssue]:
         # Construir JQL
         jql = f'project = "{project_key}"'
         if issue_type:
