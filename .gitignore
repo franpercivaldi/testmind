@@ -10,3 +10,6 @@ venv/
 # docker
 docker-compose.yml
 docker-compose.override.yml
+
+# data
+data/uploads/
