@@ -8,7 +8,9 @@ services:
       - .env
     depends_on:
       - db
-
+    volumes:
+        - ./data/uploads:/app/data/uploads 
+  
   db:
     image: postgres:15
     container_name: testmind-db

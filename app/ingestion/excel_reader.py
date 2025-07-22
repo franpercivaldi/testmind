@@ -1,3 +1,4 @@
+import os
 import pandas as pd
 from typing import List
 from app.schemas.test_case import TestCaseSchema
@@ -16,6 +17,10 @@ COLUMNS_MAP = {
 }
 
 def parse_excel_to_cases(filepath: str) -> List[TestCaseSchema]:
+    
+    if not os.path.exists(filepath):
+        raise FileNotFoundError(f"❌ Archivo no encontrado en: {filepath}")
+    
     df = pd.read_excel(filepath)
 
     # Validar que están las columnas necesarias
@@ -25,6 +30,10 @@ def parse_excel_to_cases(filepath: str) -> List[TestCaseSchema]:
 
     # Renombrar columnas a claves esperadas
     df = df.rename(columns=COLUMNS_MAP)
+
+    # Asegurar que 'fecha' es string
+    if "fecha" in df.columns:
+        df["fecha"] = df["fecha"].astype(str)
 
     # Convertir a lista de objetos
     test_cases = [
