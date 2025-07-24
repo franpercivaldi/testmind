@@ -8,7 +8,7 @@ COLUMNS_MAP = {
     "ID": "id",
     "Descripción": "descripcion",
     "Prioridad": "prioridad",
-    "Tipo de Caso": "tipo_caso",
+    "Tipo de Caso": "tipo",
     "Precondiciones": "precondiciones",
     "Pasos de prueba": "pasos",
     "Resultado Esperado": "resultado_esperado",
@@ -36,9 +36,13 @@ def parse_excel_to_cases(filepath: str) -> List[TestCaseSchema]:
         df["fecha"] = df["fecha"].astype(str)
 
     # Convertir a lista de objetos
-    test_cases = [
-        TestCaseSchema(**row.dropna().to_dict())
-        for _, row in df.iterrows()
-    ]
+    test_cases = []
+    for idx, row in df.iterrows():
+        try:
+            test_case = TestCaseSchema(**row.dropna().to_dict())
+            test_cases.append(test_case)
+        except Exception as e:
+            print(f"❌ Error en fila {idx + 2}: {e}")  # +2 para ajustar por encabezado y base 0
+
 
     return test_cases

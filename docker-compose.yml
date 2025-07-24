@@ -9,7 +9,9 @@ services:
     depends_on:
       - db
     volumes:
-        - ./data/uploads:/app/data/uploads 
+      - .:/app  
+      - ./data/uploads:/app/data/uploads
+      - ./scripts:/app/scripts    
   
   db:
     image: postgres:15

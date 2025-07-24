@@ -1,7 +1,7 @@
 import os
 from uuid import uuid4
 from fastapi import UploadFile
-from app.core.database import SessionLocal
+from app.db.session import SessionLocal
 from app.models.uploaded_file import UploadedFile
 from app.schemas.upload import UploadedFileResponse
 

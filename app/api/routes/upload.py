@@ -4,7 +4,7 @@ from app.services.file_storage import save_uploaded_file
 from app.schemas.upload import UploadedFileResponse
 from app.schemas.test_case import TestCaseSchema
 from app.ingestion.excel_reader import parse_excel_to_cases
-from app.core.database import SessionLocal
+from app.db.session import SessionLocal
 from app.models.uploaded_file import UploadedFile
 
 router = APIRouter(prefix="/excel", tags=["Excel Upload"])

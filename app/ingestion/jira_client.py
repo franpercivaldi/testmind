@@ -53,3 +53,34 @@ class JiraClient:
         except Exception as e:
             print(f"[JiraClient] Error buscando issues: {e}")
             return []
+
+
+    def get_issues_by_keys(self, keys: List[str]) -> List[JiraIssue]:
+            if not keys:
+                return []
+
+            jql = "key in (" + ", ".join([f'"{k}"' for k in keys]) + ")"
+            print(f"[JiraClient] Ejecutando JQL: {jql}")
+
+            try:
+                issues = self.client.search_issues(jql, maxResults=len(keys))
+
+                return [
+                    JiraIssue(
+                        key=issue.key,
+                        summary=issue.fields.summary,
+                        description=issue.fields.description,
+                        issue_type=issue.fields.issuetype.name if issue.fields.issuetype else None,
+                        status=issue.fields.status.name if issue.fields.status else None,
+                        labels=issue.fields.labels,
+                        assignee=issue.fields.assignee.displayName if issue.fields.assignee else None,
+                        reporter=issue.fields.reporter.displayName if issue.fields.reporter else None,
+                        created=issue.fields.created,
+                        updated=issue.fields.updated
+                    )
+                    for issue in issues
+                ]
+
+            except Exception as e:
+                print(f"[JiraClient] Error buscando por JQL: {e}")
+                return []

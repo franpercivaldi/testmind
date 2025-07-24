@@ -13,6 +13,12 @@ class Settings(BaseSettings):
     postgres_name: str
     postgres_user: str
     postgres_password: str
+    
+    # OPENAI configuration
+    openai_api_key: str
+    
+    # database_url
+    database_url: str
 
     class Config:
         env_file = ".env"

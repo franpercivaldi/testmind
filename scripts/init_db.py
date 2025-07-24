@@ -1,4 +1,4 @@
-from app.core.database import engine, Base
+from app.db.base import engine, Base
 from app.models.uploaded_file import UploadedFile
 from app.core.config import settings
 import psycopg2

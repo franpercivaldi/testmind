@@ -1,10 +1,9 @@
-from app.core.database import SessionLocal
+from sqlalchemy import text
+from app.db.session import engine
 
 try:
-    db = SessionLocal()
-    db.execute("SELECT 1")
-    print("✅ Conexión exitosa a PostgreSQL")
+    with engine.connect() as connection:
+        result = connection.execute(text("SELECT 1"))
+        print("✅ ¡Conexión a la base de datos exitosa!")
 except Exception as e:
     print(f"❌ Error de conexión: {e}")
-finally:
-    db.close()
