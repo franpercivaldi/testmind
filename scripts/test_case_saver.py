@@ -5,7 +5,7 @@ from app.services.input_loader import load_input
 from app.services.test_case_saver import save_generated_cases
 
 # Simulamos una corrida para un archivo + tickets
-file_id = "1"  # Usa uno real
+file_id = "8ed028d1-f64f-468c-a36e-aee38d129123"  # Usa uno real
 ticket_ids = ["APISIUCC-897"]  # Podés pasar más si querés
 
 # Cargar ejemplos + tickets

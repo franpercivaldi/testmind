@@ -9,23 +9,21 @@ class CaseBuilderAgent:
     def __init__(self):
         pass
 
-    def build_cases(self, tickets: List[JiraIssue], ejemplos: List[TestCaseSchema] = []) -> List[TestCaseSchema]:
-        casos_generados: List[TestCaseSchema] = []
+    def build_cases(self, tickets: List[JiraIssue], ejemplos: List[TestCaseSchema] = []) -> List[tuple[str, TestCaseSchema]]:
+        casos_generados = []
 
         for ticket in tickets:
             prompt = self._build_prompt(ticket, ejemplos)
             try:
                 response = chat_completion(prompt)
-                print(f"🔎 Respuesta bruta de OpenAI:\n{response}")
+                response_data = json.loads(response)
 
-                parsed_cases = extract_json_objects(response)
-
-                for data in parsed_cases:
-                    try:
-                        caso = TestCaseSchema(**data)
-                        casos_generados.append(caso)
-                    except Exception as e:
-                        print(f"❌ Error validando schema para {ticket.key}: {e}")
+                # Puede venir uno o varios casos
+                if isinstance(response_data, list):
+                    for case_data in response_data:
+                        casos_generados.append((ticket.key, TestCaseSchema(**case_data)))
+                else:
+                    casos_generados.append((ticket.key, TestCaseSchema(**response_data)))
 
             except Exception as e:
                 print(f"❌ Error generando caso para {ticket.key}: {e}")

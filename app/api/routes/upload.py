@@ -1,5 +1,6 @@
 from fastapi import APIRouter, UploadFile, File, Form, HTTPException, Query
 from sqlalchemy.orm import Session
+from uuid import UUID
 from app.services.file_storage import save_uploaded_file
 from app.schemas.upload import UploadedFileResponse
 from app.schemas.test_case import TestCaseSchema
@@ -14,16 +15,12 @@ def upload_excel(
     file: UploadFile = File(..., description="Archivo Excel (.xlsx)"),
     uploaded_by: str = Form(None)
 ):
-    """
-    Sube un archivo Excel y lo guarda en disco + base de datos.
-    """
     return save_uploaded_file(file, uploaded_by)
 
 @router.get("/cases", response_model=list[TestCaseSchema])
-def get_cases_from_excel(file_id: int = Query(..., description="ID del archivo subido")):
+def get_cases_from_excel(file_id: UUID = Query(..., description="ID del archivo subido")):
     db: Session = SessionLocal()
 
-    # Buscar archivo en la base
     db_file = db.query(UploadedFile).filter(UploadedFile.id == file_id).first()
     db.close()
 

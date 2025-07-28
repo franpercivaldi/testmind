@@ -1,7 +1,9 @@
 from pydantic import BaseModel
 from typing import Optional
+from datetime import date
+
 class TestCaseSchema(BaseModel):
-    fecha: Optional[str] = None
+    fecha: Optional[date] = None
     id: Optional[str]
     descripcion: Optional[str]
     prioridad: Optional[str]
