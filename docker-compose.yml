@@ -11,7 +11,8 @@ services:
     volumes:
       - .:/app  
       - ./data/uploads:/app/data/uploads
-      - ./scripts:/app/scripts    
+      - ./scripts:/app/scripts
+      - ./data/exports:/app/data/exports
   
   db:
     image: postgres:15
