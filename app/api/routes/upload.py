@@ -32,3 +32,10 @@ def get_cases_from_excel(file_id: UUID = Query(..., description="ID del archivo 
         return casos
     except Exception as e:
         raise HTTPException(status_code=400, detail=f"Error al procesar Excel: {str(e)}")
+    
+@router.get("/list", response_model=list[UploadedFileResponse])
+def list_uploaded_files():
+    db: Session = SessionLocal()
+    files = db.query(UploadedFile).order_by(UploadedFile.uploaded_at.desc()).all()
+    db.close()
+    return files
