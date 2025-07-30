@@ -4,7 +4,31 @@ Este proyecto es el frontend de la aplicación **TestMind**, diseñado para inte
 
 ## Estructura del Proyecto
 ```
-frontend/ ├── .gitignore # Archivos ignorados por Git ├── docker-compose.yml # Configuración de Docker Compose ├── Dockerfile # Configuración de Docker para el frontend ├── eslint.config.js # Configuración de ESLint ├── index.html # Archivo HTML principal ├── package.json # Dependencias del proyecto ├── vite.config.js # Configuración de Vite ├── public/ # Archivos públicos │ └── vite.svg # Icono de Vite ├── src/ # Código fuente principal │ ├── App.css # Estilos globales de la aplicación │ ├── App.jsx # Componente principal de la aplicación │ ├── index.css # Estilos globales │ ├── main.jsx # Punto de entrada de la aplicación │ ├── api/ # Módulos para llamadas a la API │ │ ├── api.js # Funciones para interactuar con el backend │ │ └── axiosInstance.js # Configuración de Axios │ ├── assets/ # Recursos estáticos │ │ └── react.svg # Icono de React │ ├── components/ # Componentes de la interfaz │ │ ├── ResultComponent.jsx # Componente para mostrar resultados │ │ ├── SegmentedComponent.jsx # Componente para controles segmentados │ │ └── StepsComponent.jsx # Componente principal de pasos
+frontend/
+├── .gitignore             # Archivos ignorados por Git
+├── docker-compose.yml     # Configuración de Docker Compose para desarrollo
+├── Dockerfile             # Imagen de Docker para entorno de desarrollo
+├── eslint.config.js       # Configuración de ESLint
+├── index.html             # HTML principal de la aplicación
+├── package.json           # Dependencias y scripts del proyecto
+├── vite.config.js         # Configuración de Vite
+├── public/                # Archivos públicos
+│   └── vite.svg           # Icono de Vite
+├── src/                   # Código fuente principal
+│   ├── App.css            # Estilos globales de la aplicación
+│   ├── App.jsx            # Componente principal
+│   ├── index.css          # Estilos base
+│   ├── main.jsx           # Punto de entrada de la app
+│   ├── api/               # Módulos para llamadas a la API
+│   │   ├── api.js             # Funciones para interactuar con el backend
+│   │   └── axiosInstance.js  # Configuración personalizada de Axios
+│   ├── assets/            # Recursos estáticos
+│   │   └── react.svg          # Logo de React
+│   ├── components/        # Componentes reutilizables de UI
+│   │   ├── ResultComponent.jsx      # Muestra resultados generados
+│   │   ├── SegmentedComponent.jsx   # Componente de selección segmentada
+│   │   └── StepsComponent.jsx       # Componente principal de pasos
+
 ```
 
 ## Instalación
