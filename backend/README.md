@@ -3,6 +3,7 @@
 Este proyecto es el backend de la aplicación **TestMind**, diseñado para gestionar la generación de casos de prueba basados en archivos Excel y tickets de Jira. Está construido con **FastAPI** y utiliza **PostgreSQL** como base de datos.
 
 ## Estructura del Proyecto
+```
 backend/
 ├── .env                     # Configuración de variables de entorno
 ├── .gitignore              # Archivos ignorados por Git
@@ -38,7 +39,7 @@ backend/
 ├── tests/                  # Pruebas del proyecto
 │   ├── integration/        # Pruebas de integración
 │   └── unit/               # Pruebas unitarias
-
+```
 
 ## Instalación
 
@@ -84,7 +85,7 @@ El archivo `.env` contiene las siguientes configuraciones:
 * POSTGRES_NAME: Nombre de la base de datos.
 * POSTGRES_USER: Usuario de la base de datos.
 * POSTGRES_PASSWORD: Contraseña de la base de datos.
-* OPENAI_API_KEY<vscode_annotation details='%5B%7B%22title%22%3A%22hardcoded-credentials%22%2C%22description%22%3A%22Embedding%20credentials%20in%20source%20code%20risks%20unauthorized%20access%22%7D%5D'></vscode_annotation>: Clave de API para OpenAI.
+* OPENAI_API_KEY: Clave de API para OpenAI.
 
 Base de Datos
 La base de datos PostgreSQL se configura automáticamente al iniciar el contenedor db en Docker Compose.
