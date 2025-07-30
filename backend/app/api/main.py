@@ -11,6 +11,7 @@ app.include_router(test_cases.router)
 
 # Lista de orígenes permitidos
 origins = [
+    "*",  # permite todos los orígenes, no recomendado para producción
     "http://localhost:5173",  # tu frontend local
     # "https://tu-dominio.com",  // si lo publicás en prod
 ]
